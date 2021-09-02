@@ -11,4 +11,5 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib"))
+    implementation("org.nield:kotlin-statistics:1.2.1")
 }
