@@ -7,7 +7,7 @@ import tornadofx.cssclass
 class BarChartStyle : Stylesheet() {
 
     companion object {
-        val backColor = c(62, 230, 112)
+        val backColor = c(27, 181, 78)
         val chartBar by cssclass()
     }
 
