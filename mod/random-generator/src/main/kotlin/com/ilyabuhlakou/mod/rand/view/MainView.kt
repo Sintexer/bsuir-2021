@@ -27,7 +27,9 @@ const val DIVIDER: Double = 65501.0
 const val SEQUENCE_SIZE: Int = 150_000
 
 class MainView : View() {
-    val seedInput = SimpleDoubleProperty(SEED)
+    val seedInput = SimpleDoubleProperty(SEED).apply {
+
+    }
     val aInput = SimpleDoubleProperty(MULTIPLIER)
     val mInput = SimpleDoubleProperty(DIVIDER)
     val sequenceSizeInput = SimpleIntegerProperty(SEQUENCE_SIZE)
@@ -82,27 +84,41 @@ class MainView : View() {
                             }
                             vbox(20) {
                                 field("Матожидание") {
-                                    textfield(mato).disableProperty()
+                                    textfield(mato){
+                                        isEditable = false
+                                    }
                                 }
                                 field("Дисперсия") {
-                                    textfield(disp).disableProperty()
+                                    textfield(disp){
+                                        isEditable = false
+                                    }
                                 }
                                 field("СКО") {
-                                    textfield(sko)
+                                    textfield(sko){
+                                        isEditable = false
+                                    }
                                 }
                             }
                             vbox(20) {
                                 field("K") {
-                                    textfield(kText)
+                                    textfield(kText){
+                                        isEditable = false
+                                    }
                                 }
                                 field("2K/N") {
-                                    textfield(knText)
+                                    textfield(knText){
+                                        isEditable = false
+                                    }
                                 }
                                 field("PI/4") {
-                                    textfield(piText)
+                                    textfield(piText){
+                                        isEditable = false
+                                    }
                                 }
                                 field("Расстояние между повторениями") {
-                                    textfield(length)
+                                    textfield(length){
+                                        isEditable = false
+                                    }
                                 }
                             }
                         }

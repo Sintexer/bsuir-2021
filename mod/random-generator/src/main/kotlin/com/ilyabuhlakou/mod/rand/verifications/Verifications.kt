@@ -10,8 +10,8 @@ fun calculateAperiodicLength(sequence: List<Double>, firstCheckedIndex: Int): In
 fun findAperiodicLength(sequence: List<Double>, P: Int): Int {
     for (i in 0 until sequence.size - P) {
         if (sequence[i] == sequence[i + P]) {
-            println("Найдена пара равных x1=${sequence[i]}, x2=${sequence[i + P]}, i1=$i, i2=${i + P})")
-            println(sequence.subList(maxOf(i - 5, 0), minOf(i + P + 5, sequence.size - 1)))
+//            println("Найдена пара равных x1=${sequence[i]}, x2=${sequence[i + P]}, i1=$i, i2=${i + P})")
+//            println(sequence.subList(maxOf(i - 5, 0), minOf(i + P + 5, sequence.size - 1)))
             return i + P
         }
     }
