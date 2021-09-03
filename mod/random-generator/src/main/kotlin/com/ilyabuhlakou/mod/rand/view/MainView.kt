@@ -13,24 +13,11 @@ import javafx.geometry.Pos
 import javafx.scene.chart.CategoryAxis
 import javafx.scene.chart.NumberAxis
 import javafx.scene.chart.XYChart
+import javafx.scene.paint.Color
 import org.nield.kotlinstatistics.median
 import org.nield.kotlinstatistics.standardDeviation
 import org.nield.kotlinstatistics.variance
-import tornadofx.View
-import tornadofx.action
-import tornadofx.asObservable
-import tornadofx.barchart
-import tornadofx.button
-import tornadofx.field
-import tornadofx.fieldset
-import tornadofx.filterInput
-import tornadofx.form
-import tornadofx.hbox
-import tornadofx.isDouble
-import tornadofx.isInt
-import tornadofx.series
-import tornadofx.textfield
-import tornadofx.vbox
+import tornadofx.*
 import kotlin.math.PI
 
 const val INTERVALS_AMOUNT = 20
@@ -130,6 +117,7 @@ class MainView : View() {
                 }
                 barchart("Гистограмма", CategoryAxis(), NumberAxis()) { series("Numbers", myData) }.apply {
                     setMinSize(900.0, 400.0)
+
                 }
             }
         }
