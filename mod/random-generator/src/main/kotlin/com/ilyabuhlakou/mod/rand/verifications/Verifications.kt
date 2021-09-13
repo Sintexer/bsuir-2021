@@ -1,23 +1,5 @@
 package com.ilyabuhlakou.mod.rand.verifications
 
-fun calculateAperiodicLength(sequence: List<Double>, firstCheckedIndex: Int): Int {
-    val list: List<Double> = ArrayList(sequence)
-    val V = list[firstCheckedIndex]
-    val P = findAperiodicBorders(sequence, V)
-    return findAperiodicLength(sequence, P)
-}
-
-fun findAperiodicLength(sequence: List<Double>, P: Int): Int {
-    for (i in 0 until sequence.size - P) {
-        if (sequence[i] == sequence[i + P]) {
-//            println("Найдена пара равных x1=${sequence[i]}, x2=${sequence[i + P]}, i1=$i, i2=${i + P})")
-//            println(sequence.subList(maxOf(i - 5, 0), minOf(i + P + 5, sequence.size - 1)))
-            return i + P
-        }
-    }
-    return 0
-}
-
 fun findAperiodicBorders(sequence: List<Double>, V: Double): Int {
     var i1 = 0
     var i2 = 0
@@ -44,4 +26,28 @@ fun findAperiodicBorders(sequence: List<Double>, V: Double): Int {
         throw NoAperiodicBordersException()
     }
     return i2 - i1
+}
+
+fun findPeriod(sequence: List<Double>, v: Int): Int {
+    val periodIndices = mutableListOf<Int>()
+    for (i in (sequence.size - 1) downTo 0) {
+        if (sequence[v] == sequence[i]) {
+            periodIndices += i
+        } else if (periodIndices.size == 2) {
+            break
+        }
+    }
+    if (periodIndices.size < 2) {
+        return 0
+    }
+    return periodIndices[0] - periodIndices[1]
+}
+
+fun findAperiodicLength(sequence: List<Double>, period: Int): Int {
+    for (i in 0 until (sequence.size - period)) {
+        if (sequence[i] == sequence[i + period]) {
+            return i + period
+        }
+    }
+    return 0
 }

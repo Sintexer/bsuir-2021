@@ -4,7 +4,8 @@ import com.ilyabuhlakou.mod.rand.controller.RandomController
 import com.ilyabuhlakou.mod.rand.createHistogramColumns
 import com.ilyabuhlakou.mod.rand.random.checkUniformity
 import com.ilyabuhlakou.mod.rand.verifications.NoAperiodicBordersException
-import com.ilyabuhlakou.mod.rand.verifications.calculateAperiodicLength
+import com.ilyabuhlakou.mod.rand.verifications.findAperiodicLength
+import com.ilyabuhlakou.mod.rand.verifications.findPeriod
 import javafx.beans.property.SimpleDoubleProperty
 import javafx.beans.property.SimpleIntegerProperty
 import javafx.beans.property.SimpleStringProperty
@@ -13,7 +14,6 @@ import javafx.geometry.Pos
 import javafx.scene.chart.CategoryAxis
 import javafx.scene.chart.NumberAxis
 import javafx.scene.chart.XYChart
-import javafx.scene.paint.Color
 import org.nield.kotlinstatistics.median
 import org.nield.kotlinstatistics.standardDeviation
 import org.nield.kotlinstatistics.variance
@@ -39,6 +39,7 @@ class MainView : View() {
     val kText = SimpleStringProperty()
     val knText = SimpleStringProperty()
     val piText = SimpleStringProperty()
+    val period = SimpleStringProperty()
     val length = SimpleStringProperty()
 
     val controller: RandomController by inject()
@@ -82,39 +83,44 @@ class MainView : View() {
                             }
                             vbox(20) {
                                 field("Матожидание") {
-                                    textfield(mato){
+                                    textfield(mato) {
                                         isEditable = false
                                     }
                                 }
                                 field("Дисперсия") {
-                                    textfield(disp){
+                                    textfield(disp) {
                                         isEditable = false
                                     }
                                 }
                                 field("СКО") {
-                                    textfield(sko){
+                                    textfield(sko) {
                                         isEditable = false
                                     }
                                 }
                             }
                             vbox(20) {
                                 field("K") {
-                                    textfield(kText){
+                                    textfield(kText) {
                                         isEditable = false
                                     }
                                 }
                                 field("2K/N") {
-                                    textfield(knText){
+                                    textfield(knText) {
                                         isEditable = false
                                     }
                                 }
                                 field("PI/4") {
-                                    textfield(piText){
+                                    textfield(piText) {
+                                        isEditable = false
+                                    }
+                                }
+                                field("Период") {
+                                    textfield(period) {
                                         isEditable = false
                                     }
                                 }
                                 field("Расстояние между повторениями") {
-                                    textfield(length){
+                                    textfield(length) {
                                         isEditable = false
                                     }
                                 }
@@ -177,19 +183,16 @@ class MainView : View() {
 
     fun findValidityInfo() {
         val K = checkUniformity(sequence)
+        val P = findPeriod(sequence, sequence.size - 2)
         kText.set(K.toString())
         knText.set(((2 * K).toDouble() / sequence.size).toString())
         piText.set((PI / 4).toString())
-        length.set(getMaxAperiodicLength())
-    }
-
-    fun getMaxAperiodicLength(): String {
-        val v = sequence.size - (sequence.size / 20)
-        return try {
-            val L = calculateAperiodicLength(sequence, v)
-            L.toString()
+        period.set(P.toString())
+        try {
+            length.set(findAperiodicLength(sequence, P).toString())
         } catch (e: NoAperiodicBordersException) {
-            "не найдено для $v индекса"
+            length.set("не найдено")
         }
     }
+
 }
