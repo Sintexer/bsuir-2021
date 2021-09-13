@@ -27,9 +27,7 @@ const val DIVIDER: Double = 65501.0
 const val SEQUENCE_SIZE: Int = 150_000
 
 class MainView : View() {
-    val seedInput = SimpleDoubleProperty(SEED).apply {
-
-    }
+    val seedInput = SimpleDoubleProperty(SEED)
     val aInput = SimpleDoubleProperty(MULTIPLIER)
     val mInput = SimpleDoubleProperty(DIVIDER)
     val sequenceSizeInput = SimpleIntegerProperty(SEQUENCE_SIZE)
