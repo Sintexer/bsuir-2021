@@ -11,9 +11,9 @@ fun uniformDistribution(leftBorder: Double, rightBorder: Double, size: Int): Lis
     return randomList(size).map { it * (leftBorder + rightBorder - leftBorder) }
 }
 
-fun gaussDistribution(mean: Double, std: Double, size: Int, n: Double = 6.0): List<Double> {
+fun gaussDistribution(mean: Double, std: Double, size: Int, n: Int = 6): List<Double> {
     require(size > 0)
-    return (0..size).map { mean + std * sqrt(12 / n) * (randomList(n.toInt()).sum() - n / 2) }
+    return (0..size).map { mean + std * sqrt(12.0 / n) * (randomList(n).sum() - n / 2) }
 }
 
 fun exponentialDistribution(lambda: Double, size: Int): List<Double> {

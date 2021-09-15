@@ -82,7 +82,7 @@ class GaussView : View() {
     }
 
     private fun buildDistributionChart() {
-        val sequence = gaussDistribution(mean.value, std.value, size.value, n.value.toDouble())
+        val sequence = gaussDistribution(mean.value, std.value, size.value, n.value)
         chartData.setAll(
             createHistogramColumns(INTERVALS_AMOUNT, sequence).map {
                 XYChart.Data<String, Number>(it.key.toString(), it.value)
