@@ -4,6 +4,8 @@ import com.ilyabuhlakou.mod.specdist.random.randomList
 import kotlin.math.ln
 import kotlin.math.sqrt
 
+const val DEFAULT_SIZE = 1_000_000
+
 fun uniformDistribution(leftBorder: Double, rightBorder: Double, size: Int): List<Double> {
     require(size > 0 && leftBorder < rightBorder)
     return randomList(size).map { it * (leftBorder + rightBorder - leftBorder) }
