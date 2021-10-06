@@ -1,4 +1,5 @@
 plugins {
+    id 'application'
     id 'java'
 }
 
@@ -16,4 +17,14 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+application {
+    mainClass = 'org.overheap.spolks.tcpclient.Main'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'org.overheap.spolks.tcpclient.Main'
+    }
 }

@@ -6,5 +6,5 @@ import java.io.IOException;
 import java.net.Socket;
 
 public interface ServerCommand {
-    void execute(String args, DataInputStream in, DataOutputStream out) throws IOException;
+    void execute(String args, DataInputStream in, DataOutputStream out, int clientId) throws IOException;
 }

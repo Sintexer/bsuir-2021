@@ -5,7 +5,7 @@ import java.net.Socket;
 
 public class EchoCommand implements ServerCommand {
     @Override
-    public void execute(String args, DataInputStream in, DataOutputStream out) {
+    public void execute(String args, DataInputStream in, DataOutputStream out, int clientId) {
         try {
             out.writeUTF(args);
             out.flush();

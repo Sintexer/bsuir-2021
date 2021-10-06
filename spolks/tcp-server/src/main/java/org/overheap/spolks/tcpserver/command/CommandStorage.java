@@ -17,6 +17,8 @@ public class CommandStorage {
         addCommand("shutdown", ShutDownCommand::new, "- Shuts down server");
         addCommand("time", TimeCommand::new, "- Shows time");
         addCommand("help", HelpCommand::new, "- Shows help");
+        addCommand("files", ShowAvailableFilesCommand::new, "- Shows available files");
+        addCommand("download", FileDownloadCommand::new, "<filename in quotes> - Downloads file from server");
     }
 
     public static CommandStorage getInstance() {

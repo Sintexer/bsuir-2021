@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 public class TimeCommand implements ServerCommand{
     @Override
-    public void execute(String args, DataInputStream in, DataOutputStream out) throws IOException {
+    public void execute(String args, DataInputStream in, DataOutputStream out, int clientId) throws IOException {
         out.writeUTF(LocalDateTime.now().toString());
         out.flush();
     }

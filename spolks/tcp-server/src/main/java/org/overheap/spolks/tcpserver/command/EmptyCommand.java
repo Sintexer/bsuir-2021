@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class EmptyCommand implements ServerCommand{
     @Override
-    public void execute(String args, DataInputStream in, DataOutputStream out) throws IOException {
+    public void execute(String args, DataInputStream in, DataOutputStream out, int clientId) throws IOException {
         out.writeUTF("Can't recognize command");
         out.flush();
     }

@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class HelpCommand implements ServerCommand {
     @Override
-    public void execute(String args, DataInputStream in, DataOutputStream out) throws IOException {
+    public void execute(String args, DataInputStream in, DataOutputStream out, int clientId) throws IOException {
         String helpMessage = CommandStorage.getInstance().getCommandContracts().entrySet().stream()
                 .map(entry -> ">" + entry.getKey() + " " + entry.getValue())
                 .collect(Collectors.joining("\n"));
